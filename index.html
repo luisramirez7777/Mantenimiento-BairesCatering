@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Baires Catering – Mantenimiento</title>
+  <link rel="stylesheet" href="static/css/style.css">
+</head>
+<body>
+  <!-- Header with logo and title -->
+  <header>
+    <div class="header-left">
+      <img src="static/images/logo.jpg" alt="Logo" class="logo" />
+      <div class="title-group">
+        <h1>BAIRES CATERING S.A.</h1>
+        <h2>Mantenimiento</h2>
+      </div>
+    </div>
+    <div id="user-controls" class="user-controls"></div>
+  </header>
+
+  <!-- Contenedor principal con barra lateral y contenido -->
+  <div class="content-wrapper">
+    <!-- Barra de navegación lateral -->
+    <nav class="main-nav">
+      <ul>
+        <li data-section="calendarSection" class="active">Calendario</li>
+        <li data-section="requestsSection">Solicitudes</li>
+        <li data-section="budgetsSection">Presupuestos</li>
+        <li data-section="machinesSection">Máquinas</li>
+        <li data-section="sparePartsSection">Repuestos</li>
+        <li data-section="toolsSection">Herramientas</li>
+        <li data-section="providersSection">Proveedores</li>
+        <li data-section="templatesSection">Plantillas</li>
+      </ul>
+    </nav>
+
+    <!-- Área principal de contenido -->
+    <main>
+    <!-- Calendar Section -->
+    <section id="calendarSection" class="section visible">
+      <div class="section-header">
+        <h3>Calendario de mantenimiento</h3>
+        <button id="addTaskBtn" class="primary-btn" style="display:none;">Agregar tarea</button>
+      </div>
+      <div class="calendar-controls">
+        <button id="prevMonthBtn" class="nav-btn">&#x2039;</button>
+        <span id="currentMonth"></span>
+        <button id="nextMonthBtn" class="nav-btn">&#x203A;</button>
+      </div>
+      <div id="calendar" class="calendar-grid"></div>
+    </section>
+
+    <!-- Requests Section -->
+    <section id="requestsSection" class="section">
+      <div class="section-header">
+        <h3>Solicitudes</h3>
+        <button id="addRequestBtn" class="primary-btn" style="display:none;">Agregar solicitud</button>
+      </div>
+      <table id="requestsTable" class="data-table">
+        <thead>
+          <tr>
+            <th>Título</th>
+            <th>Fecha</th>
+            <th>Máquina</th>
+            <th>Urgente</th>
+            <th>Estado</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </section>
+
+    <!-- Budgets Section -->
+    <section id="budgetsSection" class="section">
+      <div class="section-header">
+        <h3>Presupuestos</h3>
+        <button id="addBudgetBtn" class="primary-btn" style="display:none;">Agregar presupuesto</button>
+      </div>
+      <table id="budgetsTable" class="data-table">
+        <thead>
+          <tr>
+            <th>Título</th>
+            <th>Fecha</th>
+            <th>Monto</th>
+            <th>Estado</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </section>
+
+    <!-- Machines Section -->
+    <section id="machinesSection" class="section">
+      <div class="section-header">
+        <h3>Máquinas</h3>
+        <button id="addMachineBtn" class="primary-btn" style="display:none;">Agregar máquina</button>
+      </div>
+      <div class="machines-container">
+        <aside class="machines-list" id="machinesList"></aside>
+        <div class="machine-details" id="machineDetails">
+          <p>Selecciona una máquina para ver detalles</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Spare Parts Section -->
+    <section id="sparePartsSection" class="section">
+      <div class="section-header">
+        <h3>Repuestos</h3>
+        <button id="addSparePartBtn" class="primary-btn" style="display:none;">Agregar repuesto</button>
+      </div>
+      <table id="sparePartsTable" class="data-table">
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>Código</th>
+            <th>Cantidad</th>
+            <th>Máquina</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </section>
+
+    <!-- Tools Section -->
+    <section id="toolsSection" class="section">
+      <div class="section-header">
+        <h3>Herramientas</h3>
+        <button id="addToolBtn" class="primary-btn" style="display:none;">Agregar herramienta</button>
+      </div>
+      <table id="toolsTable" class="data-table">
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>Código</th>
+            <th>Cantidad</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </section>
+
+    <!-- Providers Section -->
+    <section id="providersSection" class="section">
+      <div class="section-header">
+        <h3>Proveedores</h3>
+        <button id="addProviderBtn" class="primary-btn" style="display:none;">Agregar proveedor</button>
+      </div>
+      <table id="providersTable" class="data-table">
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>Área</th>
+            <th>Teléfono</th>
+            <th>Email</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </section>
+
+    <!-- Templates Section -->
+    <section id="templatesSection" class="section">
+      <div class="section-header">
+        <h3>Plantillas</h3>
+        <button id="addTemplateBtn" class="primary-btn" style="display:none;">Agregar plantilla</button>
+      </div>
+      <ul id="templatesList" class="template-list"></ul>
+    </section>
+  </main>
+  </div> <!-- cierra content-wrapper -->
+
+  <!-- Modals (for tasks, machines, requests, budgets, spare parts, tools, providers, templates) will be injected here by JS -->
+  <div id="overlay" class="overlay" style="display:none;"></div>
+  <div id="modalContainer" class="modal-container"></div>
+
+  <!-- Footer with attribution -->
+  <footer>
+    <small>By: Luis Ramírez</small>
+  </footer>
+
+  <script src="static/js/script.js"></script>
+</body>
+</html>
