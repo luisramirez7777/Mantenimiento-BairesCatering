@@ -1,0 +1,674 @@
+/*
+ * Estilos para la aplicación de mantenimiento de Baires Catering.
+ * Usa una paleta cálida inspirada en panadería, con fondo blanco y acentos
+ * beige y marrón. La interfaz incluye un menú de navegación lateral,
+ * secciones modulares y tablas de datos. No depende de bibliotecas externas.
+ */
+
+/* Paleta de colores */
+:root {
+  --primary: #8b5e3c;    /* marrón tostado */
+  --secondary: #c69c6d;  /* marrón dorado */
+  --light: #ffffff;      /* fondo totalmente blanco */
+  --dark: #4a2c1d;       /* marrón oscuro para texto */
+  --accent: #f4e7d4;     /* beige suave para resaltados */
+  --danger: #c0392b;     /* rojo para urgencias */
+  --success: #28a745;    /* verde para completado */
+}
+
+/* Cabecera */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  border-bottom: 1px solid var(--secondary);
+  background-color: var(--light);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: var(--light);
+  color: var(--dark);
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Eliminado bloque erróneo que duplicaba reglas de cabecera */
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: nowrap;
+}
+
+/* Ajuste de logo: recortamos márgenes blancos del logo y aumentamos su tamaño */
+.logo {
+  height: 180px;
+  width: auto;
+  object-fit: contain;
+}
+
+/* Coloca el título y subtítulo en una columna para que "Mantenimiento" aparezca debajo de Baires Catering */
+.title-group {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.title-group h1 {
+  margin: 0;
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: var(--primary);
+}
+
+.title-group h2 {
+  margin: 0;
+  font-size: 1rem;
+  color: var(--secondary);
+}
+
+.user-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.user-controls button {
+  padding: 0.4rem 0.8rem;
+  font-size: 0.9rem;
+  border: none;
+  border-radius: 4px;
+  background-color: var(--primary);
+  color: #fff;
+  cursor: pointer;
+}
+
+.user-controls button:hover {
+  background-color: var(--dark);
+}
+
+/* Contenedor principal con barra lateral y contenido */
+.content-wrapper {
+  display: flex;
+  flex: 1;
+  min-height: 0;
+}
+
+/* Barra lateral */
+.main-nav {
+  width: 200px;
+  flex-shrink: 0;
+  background-color: var(--accent);
+  border-right: 1px solid var(--secondary);
+  display: flex;
+  flex-direction: column;
+}
+
+.main-nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.main-nav li {
+  padding: 0.75rem 1rem;
+  cursor: pointer;
+  color: var(--dark);
+  font-weight: 500;
+  border-bottom: 1px solid var(--secondary);
+}
+
+.main-nav li:last-child {
+  border-bottom: none;
+}
+
+.main-nav li.active {
+  background-color: var(--secondary);
+  color: #fff;
+}
+
+.main-nav li:hover {
+  background-color: var(--primary);
+  color: #fff;
+}
+
+main {
+  flex: 1;
+  padding: 1rem;
+  overflow-y: auto;
+}
+
+/* Sections */
+.section {
+  display: none;
+}
+.section.visible {
+  display: block;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.section-header h3 {
+  margin: 0;
+  font-size: 1.3rem;
+  color: var(--primary);
+}
+
+.primary-btn {
+  padding: 0.4rem 0.8rem;
+  border: none;
+  border-radius: 4px;
+  background-color: var(--primary);
+  color: #fff;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.primary-btn:hover {
+  background-color: var(--dark);
+}
+
+/* Botón de peligro (eliminar) */
+.danger-btn {
+  background-color: var(--danger);
+  color: #fff;
+  border: none;
+  padding: 0.4rem 0.8rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+.danger-btn:hover {
+  background-color: #a52820;
+}
+
+/* Calendar grid */
+.calendar-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.nav-btn {
+  background-color: var(--primary);
+  color: #fff;
+  border: none;
+  padding: 0.3rem 0.6rem;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.nav-btn:hover {
+  background-color: var(--dark);
+}
+
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  border: 1px solid var(--secondary);
+  border-top: none;
+}
+
+.calendar-grid .day-header {
+  background-color: var(--primary);
+  color: #fff;
+  padding: 0.4rem;
+  text-align: center;
+  font-weight: 600;
+  border-right: 1px solid var(--secondary);
+}
+
+.calendar-grid .day-header:last-child {
+  border-right: none;
+}
+
+.day-cell {
+  border: 1px solid var(--secondary);
+  min-height: 110px;
+  padding: 0.3rem;
+  position: relative;
+  overflow: hidden;
+  background-color: var(--light);
+  color: var(--dark);
+}
+
+.day-cell.inactive {
+  background-color: #efe6d9;
+  color: #a1886d;
+}
+
+.day-number {
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+.tasks {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.task {
+  padding: 2px 4px;
+  border-radius: 3px;
+  font-size: 0.75rem;
+  color: #fff;
+  cursor: pointer;
+  word-break: break-word;
+}
+
+/* Task colors reused from previous app */
+.task.planta-San-Martin.estado-pendiente { background-color: #d7b499; }
+.task.planta-San-Martin.estado-aceptada { background-color: #b68b5f; }
+.task.planta-San-Martin.estado-en-progreso { background-color: #8b5e3c; }
+.task.planta-San-Martin.estado-completada { background-color: #5c3a21; }
+.task.planta-San-Martin.estado-cancelada { background-color: #a94442; }
+
+.task.planta-Versalles.estado-pendiente { background-color: #f1d7b1; }
+.task.planta-Versalles.estado-aceptada { background-color: #d3ad75; }
+.task.planta-Versalles.estado-en-progreso { background-color: #b78952; }
+.task.planta-Versalles.estado-completada { background-color: #8c5f2d; }
+.task.planta-Versalles.estado-cancelada { background-color: #c0392b; }
+
+/* Indicadores de urgencia para las tareas (barra de color en el borde izquierdo) */
+.task.urgencia-baja {
+  border-left: 4px solid var(--success);
+}
+.task.urgencia-media {
+  border-left: 4px solid #f39c12;
+}
+.task.urgencia-alta {
+  border-left: 4px solid var(--danger);
+}
+
+/* Estilos para tipos de mantenimiento en tabla de mantenimientos */
+.mant-type-preventivo {
+  display: inline-block;
+  padding: 0.1rem 0.4rem;
+  border-radius: 12px;
+  background-color: var(--success);
+  color: #fff;
+  font-size: 0.75rem;
+  white-space: nowrap;
+}
+.mant-type-correctivo {
+  display: inline-block;
+  padding: 0.1rem 0.4rem;
+  border-radius: 12px;
+  background-color: var(--danger);
+  color: #fff;
+  font-size: 0.75rem;
+  white-space: nowrap;
+}
+.mant-type-intervencion {
+  display: inline-block;
+  padding: 0.1rem 0.4rem;
+  border-radius: 12px;
+  background-color: #6f42c1; /* morado */
+  color: #fff;
+  font-size: 0.75rem;
+  white-space: nowrap;
+}
+
+/* Colores para estados de mantenimiento en tabla (completada o no completada) */
+.mant-status-completada {
+  display: inline-block;
+  padding: 0.1rem 0.4rem;
+  border-radius: 12px;
+  background-color: var(--success);
+  color: #fff;
+  font-size: 0.75rem;
+  white-space: nowrap;
+}
+.mant-status-no-completada {
+  display: inline-block;
+  padding: 0.1rem 0.4rem;
+  border-radius: 12px;
+  background-color: var(--danger);
+  color: #fff;
+  font-size: 0.75rem;
+  white-space: nowrap;
+}
+
+/* Indicadores de urgencia para solicitudes (tabla de solicitudes) */
+.urgencia-label {
+  display: inline-block;
+  padding: 0.1rem 0.4rem;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  color: #fff;
+}
+.urgencia-baja-label {
+  background-color: var(--success);
+}
+.urgencia-media-label {
+  background-color: #f39c12;
+}
+.urgencia-alta-label {
+  background-color: var(--danger);
+}
+
+/* Imagen miniatura para herramientas en listado */
+.tool-thumb {
+  width: 36px;
+  height: 36px;
+  object-fit: cover;
+  border-radius: 4px;
+  margin-right: 0.4rem;
+}
+
+/* Machines section */
+.machines-container {
+  display: flex;
+  gap: 1rem;
+}
+.machines-list {
+  flex: 1;
+  max-width: 220px;
+  border-right: 1px solid var(--secondary);
+  padding-right: 0.5rem;
+}
+.machines-list .machine-item {
+  padding: 0.4rem;
+  border: 1px solid var(--secondary);
+  border-radius: 4px;
+  margin-bottom: 0.4rem;
+  cursor: pointer;
+  background-color: var(--accent);
+}
+.machines-list .machine-item.active {
+  background-color: var(--secondary);
+  color: #fff;
+}
+.machine-details {
+  /* Diseñamos el contenedor para mostrar la imagen y las especificaciones en columnas */
+  flex: 3;
+  padding: 0.5rem;
+  border: 1px solid var(--secondary);
+  border-radius: 4px;
+  background-color: var(--light);
+  display: flex;
+  gap: 1rem;
+}
+
+/* Imagen de la máquina en la vista de detalles */
+.machine-details img {
+  width: 200px;
+  height: auto;
+  object-fit: contain;
+  border: 1px solid var(--secondary);
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+
+/* Contenedor de especificaciones de la máquina */
+.machine-details .details-grid {
+  flex: 1;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  row-gap: 0.4rem;
+  column-gap: 1rem;
+}
+
+.machine-details .details-grid .label {
+  font-weight: bold;
+  color: var(--primary);
+}
+
+/* ---------------------------------------------------------------------------
+ *  Nuevas clases para la ficha de la máquina
+ *
+ *  - .machine-detail-container: contenedor general de los detalles de la máquina.
+ *    No utiliza display:flex para que los elementos se apilen verticalmente.
+ *  - .machine-top-row: fila que contiene la imagen y la tabla de especificaciones.
+ *    Se alinea en horizontal con flex y deja un margen inferior para separar
+ *    el historial.
+ */
+.machine-detail-container {
+  flex: 3;
+  padding: 0.5rem;
+  border: 1px solid var(--secondary);
+  border-radius: 4px;
+  background-color: var(--light);
+  display: block;
+}
+
+.machine-top-row {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.machine-top-row img {
+  width: 200px;
+  height: auto;
+  object-fit: contain;
+  border: 1px solid var(--secondary);
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+
+.machine-top-row .details-grid {
+  flex: 1;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  row-gap: 0.4rem;
+  column-gap: 1rem;
+}
+
+.machine-top-row .details-grid .label {
+  font-weight: bold;
+  color: var(--primary);
+}
+
+/* Tables */
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.data-table th,
+.data-table td {
+  border: 1px solid var(--secondary);
+  padding: 0.4rem;
+  text-align: left;
+  font-size: 0.9rem;
+}
+.data-table th {
+  background-color: var(--primary);
+  color: #fff;
+}
+.data-table tr:nth-child(even) {
+  background-color: var(--accent);
+}
+.data-table tr:hover {
+  background-color: var(--secondary);
+  color: #fff;
+}
+
+/* Template list */
+.template-list {
+  list-style: none;
+  padding: 0;
+}
+.template-list li {
+  padding: 0.5rem;
+  border: 1px solid var(--secondary);
+  border-radius: 4px;
+  margin-bottom: 0.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--accent);
+}
+
+/* Overlay and modals (placeholder) */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 100;
+}
+
+.modal-container {
+  position: fixed;
+  /* Situamos el modal cercano a la parte superior para que todo el contenido sea accesible y no quede cortado. */
+  top: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #fff;
+  padding: 1rem;
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+  z-index: 110;
+  /* Ajustamos el ancho mínimo y máximo para que los formularios sean más cómodos y no se vean demasiado pequeños */
+  max-height: 90vh;
+  overflow-y: auto;
+  /* Amplía el tamaño mínimo y máximo para que el formulario sea más ancho */
+  min-width: 500px;
+  max-width: 800px;
+}
+
+.modal-container h3 {
+  margin-top: 0;
+  color: var(--primary);
+}
+
+.modal-container form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.modal-container label {
+  font-weight: bold;
+}
+
+.modal-container input[type="text"],
+.modal-container input[type="number"],
+.modal-container input[type="datetime-local"],
+.modal-container input[type="file"],
+.modal-container select,
+.modal-container textarea {
+  width: 100%;
+  padding: 0.4rem;
+  border: 1px solid var(--secondary);
+  border-radius: 4px;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+}
+
+.modal-actions button {
+  padding: 0.4rem 0.8rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.save-btn {
+  background-color: var(--primary);
+  color: #fff;
+}
+
+.save-btn:hover {
+  background-color: var(--dark);
+}
+
+.cancel-btn {
+  background-color: #ccc;
+  color: var(--dark);
+}
+
+.delete-btn {
+  background-color: var(--danger);
+  color: #fff;
+}
+
+footer {
+  /*
+   * Posicionamos la atribución del autor en la esquina inferior derecha y
+   * utilizamos un color suave para que no distraiga del contenido principal.
+   */
+  text-align: right;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  background-color: var(--light);
+  border-top: 1px solid var(--secondary);
+  color: var(--secondary);
+}
+
+/* Etiquetas de estado para presupuestos */
+.status-budget-enrevision {
+  background-color: var(--secondary);
+  color: #fff;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 0.8rem;
+}
+.status-budget-aprobado {
+  background-color: var(--success);
+  color: #fff;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 0.8rem;
+}
+.status-budget-rechazado {
+  background-color: var(--danger);
+  color: #fff;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 0.8rem;
+}
+
+/* Etiquetas de estado para herramientas */
+.tool-status-buena {
+  background-color: var(--success);
+  color: #fff;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 0.8rem;
+}
+.tool-status-media {
+  background-color: var(--secondary);
+  color: #fff;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 0.8rem;
+}
+.tool-status-mala {
+  background-color: var(--danger);
+  color: #fff;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 0.8rem;
+}
+.tool-status-reparacion {
+  background-color: #ff8800;
+  color: #fff;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 0.8rem;
+}
