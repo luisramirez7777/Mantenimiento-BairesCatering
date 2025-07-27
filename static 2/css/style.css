@@ -1,0 +1,446 @@
+/*
+ * Estilos para la aplicación de mantenimiento de Baires Catering.
+ * Usa una paleta cálida inspirada en panadería, con fondo blanco y acentos
+ * beige y marrón. La interfaz incluye un menú de navegación lateral,
+ * secciones modulares y tablas de datos. No depende de bibliotecas externas.
+ */
+
+/* Paleta de colores */
+:root {
+  --primary: #8b5e3c;    /* marrón tostado */
+  --secondary: #c69c6d;  /* marrón dorado */
+  --light: #fdfaf5;      /* fondo blanco cálido */
+  --dark: #4a2c1d;       /* marrón oscuro para texto */
+  --accent: #f4e7d4;     /* beige suave para resaltados */
+  --danger: #c0392b;     /* rojo para urgencias */
+  --success: #28a745;    /* verde para completado */
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: var(--light);
+  color: var(--dark);
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Header ocupa todo el ancho y se mantiene arriba */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  border-bottom: 1px solid var(--secondary);
+  background-color: var(--light);
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.logo {
+  height: 50px;
+}
+
+.title-group h1 {
+  margin: 0;
+  font-size: 1.6rem;
+  font-weight: bold;
+  color: var(--primary);
+}
+
+.title-group h2 {
+  margin: 0;
+  font-size: 1rem;
+  color: var(--secondary);
+}
+
+.user-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.user-controls button {
+  padding: 0.4rem 0.8rem;
+  font-size: 0.9rem;
+  border: none;
+  border-radius: 4px;
+  background-color: var(--primary);
+  color: #fff;
+  cursor: pointer;
+}
+
+.user-controls button:hover {
+  background-color: var(--dark);
+}
+
+/* Contenedor principal con barra lateral y contenido */
+.content-wrapper {
+  display: flex;
+  flex: 1;
+  min-height: 0;
+}
+
+/* Barra lateral */
+.main-nav {
+  width: 200px;
+  flex-shrink: 0;
+  background-color: var(--accent);
+  border-right: 1px solid var(--secondary);
+  display: flex;
+  flex-direction: column;
+}
+
+.main-nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.main-nav li {
+  padding: 0.75rem 1rem;
+  cursor: pointer;
+  color: var(--dark);
+  font-weight: 500;
+  border-bottom: 1px solid var(--secondary);
+}
+
+.main-nav li:last-child {
+  border-bottom: none;
+}
+
+.main-nav li.active {
+  background-color: var(--secondary);
+  color: #fff;
+}
+
+.main-nav li:hover {
+  background-color: var(--primary);
+  color: #fff;
+}
+
+main {
+  flex: 1;
+  padding: 1rem;
+  overflow-y: auto;
+}
+
+/* Sections */
+.section {
+  display: none;
+}
+.section.visible {
+  display: block;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.section-header h3 {
+  margin: 0;
+  font-size: 1.3rem;
+  color: var(--primary);
+}
+
+.primary-btn {
+  padding: 0.4rem 0.8rem;
+  border: none;
+  border-radius: 4px;
+  background-color: var(--primary);
+  color: #fff;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.primary-btn:hover {
+  background-color: var(--dark);
+}
+
+/* Calendar grid */
+.calendar-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.nav-btn {
+  background-color: var(--primary);
+  color: #fff;
+  border: none;
+  padding: 0.3rem 0.6rem;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.nav-btn:hover {
+  background-color: var(--dark);
+}
+
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  border: 1px solid var(--secondary);
+  border-top: none;
+}
+
+.calendar-grid .day-header {
+  background-color: var(--primary);
+  color: #fff;
+  padding: 0.4rem;
+  text-align: center;
+  font-weight: 600;
+  border-right: 1px solid var(--secondary);
+}
+
+.calendar-grid .day-header:last-child {
+  border-right: none;
+}
+
+.day-cell {
+  border: 1px solid var(--secondary);
+  min-height: 110px;
+  padding: 0.3rem;
+  position: relative;
+  overflow: hidden;
+  background-color: var(--light);
+  color: var(--dark);
+}
+
+.day-cell.inactive {
+  background-color: #efe6d9;
+  color: #a1886d;
+}
+
+.day-number {
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+.tasks {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.task {
+  padding: 2px 4px;
+  border-radius: 3px;
+  font-size: 0.75rem;
+  color: #fff;
+  cursor: pointer;
+  word-break: break-word;
+}
+
+/* Task colors reused from previous app */
+.task.planta-San-Martin.estado-pendiente { background-color: #d7b499; }
+.task.planta-San-Martin.estado-aceptada { background-color: #b68b5f; }
+.task.planta-San-Martin.estado-en-progreso { background-color: #8b5e3c; }
+.task.planta-San-Martin.estado-completada { background-color: #5c3a21; }
+.task.planta-San-Martin.estado-cancelada { background-color: #a94442; }
+
+.task.planta-Versalles.estado-pendiente { background-color: #f1d7b1; }
+.task.planta-Versalles.estado-aceptada { background-color: #d3ad75; }
+.task.planta-Versalles.estado-en-progreso { background-color: #b78952; }
+.task.planta-Versalles.estado-completada { background-color: #8c5f2d; }
+.task.planta-Versalles.estado-cancelada { background-color: #c0392b; }
+
+/* Machines section */
+.machines-container {
+  display: flex;
+  gap: 1rem;
+}
+.machines-list {
+  flex: 1;
+  max-width: 220px;
+  border-right: 1px solid var(--secondary);
+  padding-right: 0.5rem;
+}
+.machines-list .machine-item {
+  padding: 0.4rem;
+  border: 1px solid var(--secondary);
+  border-radius: 4px;
+  margin-bottom: 0.4rem;
+  cursor: pointer;
+  background-color: var(--accent);
+}
+.machines-list .machine-item.active {
+  background-color: var(--secondary);
+  color: #fff;
+}
+.machine-details {
+  flex: 3;
+  padding: 0.5rem;
+  border: 1px solid var(--secondary);
+  border-radius: 4px;
+  background-color: var(--light);
+}
+.machine-details img {
+  max-width: 200px;
+  height: auto;
+  margin-bottom: 0.5rem;
+  border: 1px solid var(--secondary);
+  border-radius: 4px;
+}
+.machine-details .details-grid {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  row-gap: 0.4rem;
+  column-gap: 1rem;
+}
+.machine-details .details-grid .label {
+  font-weight: bold;
+  color: var(--primary);
+}
+
+/* Tables */
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.data-table th,
+.data-table td {
+  border: 1px solid var(--secondary);
+  padding: 0.4rem;
+  text-align: left;
+  font-size: 0.9rem;
+}
+.data-table th {
+  background-color: var(--primary);
+  color: #fff;
+}
+.data-table tr:nth-child(even) {
+  background-color: var(--accent);
+}
+.data-table tr:hover {
+  background-color: var(--secondary);
+  color: #fff;
+}
+
+/* Template list */
+.template-list {
+  list-style: none;
+  padding: 0;
+}
+.template-list li {
+  padding: 0.5rem;
+  border: 1px solid var(--secondary);
+  border-radius: 4px;
+  margin-bottom: 0.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--accent);
+}
+
+/* Overlay and modals (placeholder) */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 100;
+}
+
+.modal-container {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  padding: 1rem;
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+  z-index: 110;
+  max-height: 90vh;
+  overflow-y: auto;
+  min-width: 320px;
+}
+
+.modal-container h3 {
+  margin-top: 0;
+  color: var(--primary);
+}
+
+.modal-container form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.modal-container label {
+  font-weight: bold;
+}
+
+.modal-container input[type="text"],
+.modal-container input[type="number"],
+.modal-container input[type="datetime-local"],
+.modal-container input[type="file"],
+.modal-container select,
+.modal-container textarea {
+  width: 100%;
+  padding: 0.4rem;
+  border: 1px solid var(--secondary);
+  border-radius: 4px;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+}
+
+.modal-actions button {
+  padding: 0.4rem 0.8rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.save-btn {
+  background-color: var(--primary);
+  color: #fff;
+}
+
+.save-btn:hover {
+  background-color: var(--dark);
+}
+
+.cancel-btn {
+  background-color: #ccc;
+  color: var(--dark);
+}
+
+.delete-btn {
+  background-color: var(--danger);
+  color: #fff;
+}
+
+footer {
+  /*
+   * Posicionamos la atribución del autor en la esquina inferior derecha y
+   * utilizamos un color suave para que no distraiga del contenido principal.
+   */
+  text-align: right;
+  padding: 0.5rem 1rem;
+  font-size: 0.75rem;
+  background-color: var(--light);
+  border-top: 1px solid var(--secondary);
+  color: var(--secondary);
+}
