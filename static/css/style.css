@@ -1,0 +1,281 @@
+/*
+ * Estilos personalizados para la aplicación de calendario de mantenimiento en línea.
+ * Incluye una paleta de colores inspirada en panadería y estilos para el calendario,
+ * controles, modales y el formulario de inicio de sesión. Todos los estilos se
+ * aplican sin dependencias externas.
+ */
+
+/* Paleta de colores */
+:root {
+  --primary: #8b5e3c;    /* marrón tostado intenso */
+  --secondary: #c69c6d;  /* marrón dorado cálido */
+  --light: #f5f0e1;      /* beige claro para fondos */
+  --dark: #4a2c1d;       /* chocolate oscuro para textos */
+  --error: #c0392b;      /* rojo oscuro para errores */
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background-color: var(--light);
+  color: var(--dark);
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.4;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  background-color: var(--light);
+  border-bottom: 1px solid var(--secondary);
+}
+
+.logo-title {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+#logo {
+  height: 40px;
+}
+
+header h1 {
+  font-size: 1.4rem;
+  margin: 0;
+  font-weight: bold;
+}
+
+.user-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.user-controls .user-info {
+  font-weight: bold;
+}
+
+.user-controls button {
+  padding: 0.35rem 0.6rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  background-color: var(--primary);
+  color: #fff;
+}
+
+.user-controls button:hover {
+  background-color: var(--dark);
+}
+
+main {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+/* Calendario y controles */
+.calendar-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.nav-btn, .action-btn {
+  background-color: var(--primary);
+  color: #fff;
+  border: none;
+  padding: 0.4rem 0.8rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.nav-btn:hover, .action-btn:hover {
+  background-color: var(--dark);
+}
+
+#currentMonth {
+  font-weight: bold;
+  min-width: 8rem;
+  text-align: center;
+}
+
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  border: 1px solid var(--secondary);
+  border-top: none;
+}
+
+.day-header {
+  background-color: var(--primary);
+  color: #fff;
+  text-align: center;
+  padding: 0.4rem;
+  font-weight: 600;
+  border-right: 1px solid var(--secondary);
+}
+
+.day-header:last-child {
+  border-right: none;
+}
+
+.day-cell {
+  border: 1px solid var(--secondary);
+  min-height: 100px;
+  padding: 0.3rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.day-cell.inactive {
+  background-color: #e8dfd1;
+  color: #a1886d;
+}
+
+.day-number {
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+.tasks {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.task {
+  padding: 2px 4px;
+  border-radius: 3px;
+  font-size: 0.75rem;
+  color: #fff;
+  cursor: pointer;
+  word-break: break-word;
+}
+
+/* Colores de tareas según planta y estado */
+/* Clases generadas dinámicamente: planta-<plant> estado-<status> */
+/* San Martín */
+.task.planta-San-Martin.estado-pendiente { background-color: #d7b499; }
+.task.planta-San-Martin.estado-aceptada { background-color: #b68b5f; }
+.task.planta-San-Martin.estado-en-progreso { background-color: #8b5e3c; }
+.task.planta-San-Martin.estado-completada { background-color: #5c3a21; }
+.task.planta-San-Martin.estado-cancelada { background-color: #a94442; }
+
+/* Versalles */
+.task.planta-Versalles.estado-pendiente { background-color: #f1d7b1; }
+.task.planta-Versalles.estado-aceptada { background-color: #d3ad75; }
+.task.planta-Versalles.estado-en-progreso { background-color: #b78952; }
+.task.planta-Versalles.estado-completada { background-color: #8c5f2d; }
+.task.planta-Versalles.estado-cancelada { background-color: #c0392b; }
+
+/* Estilos de modales */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: none;
+  z-index: 10;
+}
+
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  padding: 1rem;
+  border-radius: 6px;
+  width: 90%;
+  max-width: 400px;
+  z-index: 11;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+.modal-content h2 {
+  margin-top: 0;
+  font-size: 1.2rem;
+  color: var(--dark);
+}
+
+.modal-content form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.modal-content label {
+  font-size: 0.85rem;
+}
+
+.modal-content input,
+.modal-content select {
+  padding: 0.4rem;
+  border: 1px solid var(--secondary);
+  border-radius: 4px;
+  font-size: 0.9rem;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.save-btn {
+  background-color: var(--primary);
+  color: #fff;
+  border: none;
+  padding: 0.4rem 0.8rem;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.cancel-btn {
+  background-color: #888;
+  color: #fff;
+  border: none;
+  padding: 0.4rem 0.8rem;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.delete-btn {
+  background-color: #a94442;
+  color: #fff;
+  border: none;
+  padding: 0.4rem 0.8rem;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.save-btn:hover {
+  background-color: var(--dark);
+}
+
+.cancel-btn:hover {
+  background-color: #666;
+}
+
+.delete-btn:hover {
+  background-color: #922b21;
+}
+
+.error-msg {
+  color: var(--error);
+  font-size: 0.8rem;
+}
